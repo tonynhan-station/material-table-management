@@ -1,15 +1,14 @@
 <div class="header icon-text">
-	<mat-form-field>
+	<button mat-raised-button class="padding-button" (click)="create()">
+		<mat-icon>add</mat-icon>Create
+	</button>
+	<mat-form-field class="padding">
 		<input matInput placeholder="Filter" type="text" [(ngModel)]="filterValue" (keyup)="applyFilter(filterValue)">
-		<button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="applyFilter(filterValue='')">
-      <mat-icon>close</mat-icon>
-    </button>
+		<button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear"
+			(click)="applyFilter(filterValue='')">
+			<mat-icon>close</mat-icon>
+		</button>
 	</mat-form-field>
-	<div>
-		<button mat-icon-button matTooltip="Click to Add Profile" class="iconbutton" color="primary">
-      <mat-icon>add_circle</mat-icon>
-    </button>
-	</div>
 </div>
 
 <div class="container mat-elevation-z8">
@@ -49,12 +48,14 @@
 		<ng-container matColumnDef="actions">
 			<mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
 			<mat-cell *matCellDef="let element">
-				<button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
-          <mat-icon>edit</mat-icon>
-        </button>
-				<button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="delete(element)">
-          <mat-icon>delete</mat-icon>
-        </button>
+				<button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+					(click)="edit()">
+					<mat-icon>edit</mat-icon>
+				</button>
+				<button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+					(click)="delete(element)">
+					<mat-icon>delete</mat-icon>
+				</button>
 			</mat-cell>
 		</ng-container>
 
@@ -63,6 +64,6 @@
 		</mat-row>
 	</mat-table>
 
-	<mat-paginator [pageSizeOptions]="[10]"></mat-paginator>
+	<mat-paginator [pageSizeOptions]="[10, 20, 30, 50]"></mat-paginator>
 </div>
 <router-outlet></router-outlet>

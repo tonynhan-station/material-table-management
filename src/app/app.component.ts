@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +12,15 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'material-table-management';
   displayedColumns = ["name", "class", "cir", "cbs", "queue", "actions"];
   filterValue = '';
-  users: UserData[] = [];
+  private users: UserData[] = [];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     for (let i = 1; i <= 100; i++) {
       this.users.push(createNewUser(i));
     }
@@ -41,11 +43,12 @@ export class AppComponent {
     this.dataSource.filter = filterValue;
   }
 
-  create(element: UserData) {
-    console.log(element);
-    if(element != null) {
-      this.users.unshift(element);
-    }
+  create() {
+    this.dialog.open(CreateComponent);
+  }
+
+  edit() {
+    this.dialog.open(EditComponent);
   }
 
   delete(element: UserData) {
@@ -55,6 +58,7 @@ export class AppComponent {
       this.users.splice(index, 1);
       console.log(this.users.length);
       this.dataSource = new MatTableDataSource(this.users);
+      this.ngAfterViewInit();
     }
   }
 }

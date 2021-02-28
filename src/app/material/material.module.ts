@@ -13,7 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CdkTableModule } from '@angular/cdk/table';
-
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [],
@@ -31,6 +31,7 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatSortModule,
     MatTableModule,
     MatTooltipModule,
+    MatDialogModule
   ],
   imports: [
     CommonModule
