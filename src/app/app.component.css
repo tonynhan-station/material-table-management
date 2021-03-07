@@ -4,9 +4,11 @@
     min-width: 300px;
 }
 
-.header {
+.filter-line {
     min-height: 64px;
     padding: 0px 28px 8px;
+    display: flex;
+    align-items: center;
 }
 
 .padding-button {
